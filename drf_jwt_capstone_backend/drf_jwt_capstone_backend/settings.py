@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
     'clubs.apps.ClubsConfig',
+    'stories.apps.StoriesConfig',
 ]
 
 MIDDLEWARE = [
