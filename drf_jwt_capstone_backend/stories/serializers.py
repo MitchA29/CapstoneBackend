@@ -5,3 +5,4 @@ class StorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Story
         fields = ['id','storyAuthor_id','storyDocument','storyName','storyDescription','storyGenre']
+        depth = 1

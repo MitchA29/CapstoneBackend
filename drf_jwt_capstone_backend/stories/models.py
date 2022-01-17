@@ -4,9 +4,9 @@ from django.db.models.deletion import CASCADE
 User = get_user_model()
 
 class Story(models.Model):
-    storyAuthor = models.ForeignKey(User, on_delete=models.CASCADE)
-    storyDocument = models.CharField(max_length=500)
+    storyAuthor = models.ForeignKey(User, on_delete = models.CASCADE)
+    storyDocument = models.CharField(max_length=100)
     storyName = models.CharField(max_length=100)
     storyDescription = models.CharField(max_length=500)
-    storyGenre = models.IntegerField()
+    storyGenre = models.CharField(max_length=100)
     

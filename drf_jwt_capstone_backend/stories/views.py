@@ -23,10 +23,14 @@ def user_stories(request):
     if request.method == 'POST':
         serializer = StorySerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(storyAuthor=request.user)
+            serializer.save(storyAuthor_id=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
         stories = Story.objects.filter(storyAuthor_id=request.user.id)
         serializer = StorySerializer(stories, many=True)
         return Response(serializer.data)
+    elif request.method == "DELETE":
+        stories = Story.objects.filter(id = request.id)
+        stories.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'clubs.apps.ClubsConfig',
     'stories.apps.StoriesConfig',
+    'favorites.apps.FavoritesConfig',
 ]
 
 MIDDLEWARE = [

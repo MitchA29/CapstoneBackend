@@ -17,7 +17,7 @@ def get_all_clubs(request):
     return Response(serializer.data)
 
 
-@api_view(['POST','GET'])
+@api_view(['POST','GET','DELETE'])
 @permission_classes([IsAuthenticated])
 def user_clubs(request):
     if request.method == 'POST':
@@ -30,3 +30,7 @@ def user_clubs(request):
         clubs = Club.objects.filter(clubCreator_id=request.user.id)
         serializer = ClubSerializer(clubs, many=True)
         return Response(serializer.data)
+    elif request.method == "DELETE":
+        clubs = Club.objects.filter(id = request.id)
+        clubs.delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
