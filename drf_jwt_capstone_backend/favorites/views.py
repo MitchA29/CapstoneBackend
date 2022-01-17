@@ -6,25 +6,17 @@ from rest_framework.decorators import api_view, permission_classes
 from django.apps import apps
 
 from .models import Favorite
-from stories.models import Story
 from .serializers import FavoriteGetSerializer
 from .serializers import FavoritePostSerializer
-from stories.serializers import StorySerializer
 from django.contrib.auth import get_user_model
 User = get_user_model()
-
-
-class StorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Story
-        fields = ['id','storyAuthor_id','storyDocument','storyName','storyDescription','storyGenre']
 
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_favorites(request):
     favorites = Favorite.objects.all()
-    serializer = FavoriteSerializer(favorites, many=True)
+    serializer = FavoriteGetSerializer(favorites, many=True)
     return Response(serializer.data)
 
 

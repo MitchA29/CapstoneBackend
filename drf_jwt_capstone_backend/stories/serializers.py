@@ -1,8 +1,12 @@
 from rest_framework import serializers
 from .models import Story
 
-class StorySerializer(serializers.ModelSerializer):
+class StoryGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Story
-        fields = ['id','storyAuthor_id','storyDocument','storyName','storyDescription','storyGenre']
+        fields = ['id','storyAuthor','storyDocument','storyName','storyDescription','storyGenre']
         depth = 1
+class StoryPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Story
+        fields = ['id','storyAuthor','storyDocument','storyName','storyDescription','storyGenre']

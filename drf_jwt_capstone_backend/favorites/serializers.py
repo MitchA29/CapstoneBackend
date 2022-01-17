@@ -5,7 +5,7 @@ class FavoriteGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
         fields = ['id','favoriteOwner','favoriteStory']
-        depth = 1
+        depth = 2
 
 class FavoritePostSerializer(serializers.ModelSerializer):
     class Meta:

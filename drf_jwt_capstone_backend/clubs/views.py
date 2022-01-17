@@ -27,7 +27,7 @@ def user_clubs(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
-        clubs = Club.objects.filter(clubCreator_id=request.user.id)
+        clubs = Club.objects.filter(clubCreator=request.user.id)
         serializer = ClubSerializer(clubs, many=True)
         return Response(serializer.data)
     elif request.method == "DELETE":
