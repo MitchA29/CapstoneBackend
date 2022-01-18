@@ -30,10 +30,17 @@ def user_favorites(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
-        Story = apps.get_model('stories.Story')
         favorites = Favorite.objects.filter(favoriteOwner=request.user)
         serializer = FavoriteGetSerializer(favorites, many=True)
         return Response(serializer.data)
+
+@api_view(['DELETE'])
+def delete_favorite(request, pk):
+    if request.method == 'DELETE':
+        favorites = Favorite.objects.filter(id == pk)
+        favorites.delete()
+        return Response("Unfavorited.")
+
     
 
 
