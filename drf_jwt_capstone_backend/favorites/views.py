@@ -35,11 +35,13 @@ def user_favorites(request):
         return Response(serializer.data)
 
 @api_view(['DELETE'])
-def delete_favorite(request, pk):
-    if request.method == 'DELETE':
-        favorites = Favorite.objects.filter(id == pk)
-        favorites.delete()
-        return Response("Unfavorited.")
+@permission_classes([IsAuthenticated])
+def delete_Favorite(request, pk):
+    if request.method == "DELETE":
+        stories = Favorite.objects.filter(id=pk)
+        stories.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
     
 

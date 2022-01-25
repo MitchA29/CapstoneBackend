@@ -31,7 +31,12 @@ def user_clubs(request):
         clubs = Club.objects.filter(clubCreator=request.user.id)
         serializer = ClubGetSerializer(clubs, many=True)
         return Response(serializer.data)
-    elif request.method == "DELETE":
-        clubs = Club.objects.filter(id = request.id)
-        clubs.delete()
-        return Response(status=status.HTTP_202_ACCEPTED)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def clubs_delete(request, pk):
+    if request.method == "DELETE":
+        stories = Club.objects.filter(id=pk)
+        stories.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+

@@ -20,7 +20,7 @@ def get_all_stories(request):
     return Response(serializer.data)
 
 
-@api_view(['POST','GET','DELETE'])
+@api_view(['POST','GET'])
 @permission_classes([IsAuthenticated])
 def user_stories(request):
     if request.method == 'POST':
@@ -33,7 +33,11 @@ def user_stories(request):
         stories = Story.objects.filter(storyAuthor=request.user.id)
         serializer = StoryGetSerializer(stories, many=True)
         return Response(serializer.data)
-    elif request.method == "DELETE":
-        stories = Story.objects.filter(id = id)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def stories_delete(request, pk):
+    if request.method == "DELETE":
+        stories = Story.objects.filter(id=pk)
         stories.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
