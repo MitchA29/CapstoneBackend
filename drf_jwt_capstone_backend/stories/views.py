@@ -41,3 +41,11 @@ def stories_delete(request, pk):
         stories = Story.objects.filter(id=pk)
         stories.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def read_story(request, pk):
+    if request.method == 'GET':
+        story = Story.objects.get(id=pk)
+        serializer = StoryGetSerializer(story)
+        return Response(serializer.data, status=status.HTTP_200_OK)
