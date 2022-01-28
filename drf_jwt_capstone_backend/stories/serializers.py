@@ -5,7 +5,7 @@ class StoryGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Story
         fields = ['id','storyAuthor','storyDocument','storyName','storyDescription','storyGenre']
-        depth = 1
+        depth = 2
 class StoryPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Story

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'clubs.apps.ClubsConfig',
     'stories.apps.StoriesConfig',
     'favorites.apps.FavoritesConfig',
+    'members.apps.MembersConfig',
 ]
 
 MIDDLEWARE = [

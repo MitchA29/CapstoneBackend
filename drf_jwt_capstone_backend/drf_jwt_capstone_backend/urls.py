@@ -22,4 +22,6 @@ urlpatterns = [
     path('api/clubs/', include('clubs.urls')),
     path('api/stories/', include('stories.urls')),
     path('api/favorites/', include('favorites.urls')),
+    path('api/members/', include('members.urls')),
+
 ]
